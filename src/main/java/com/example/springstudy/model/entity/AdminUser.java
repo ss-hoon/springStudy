@@ -1,4 +1,4 @@
-package com.example.springstudy.model.Entity;
+package com.example.springstudy.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,13 +14,19 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Category {
+public class AdminUser {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private String type;
-    private String title;
+    private String account;
+    private String password;
+    private String role;
+    private LocalDateTime lastLoginAt;
+    private LocalDateTime passwordUpdateAt;
+    private Integer loginFailCount;
+    private LocalDateTime registeredAt;
+    private LocalDateTime unregisteredAt;
     private LocalDateTime createdAt;
     private String createdBy;
     private LocalDateTime updatedAt;

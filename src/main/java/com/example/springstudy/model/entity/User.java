@@ -1,4 +1,4 @@
-package com.example.springstudy.model.Entity;
+package com.example.springstudy.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,18 +13,18 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-public class AdminUser {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Entity // == table
+// @Table(name="user") 테이블의 이름이 동일하면 생략 가능
+public class User {
+    // @Column(name="id") 컬럼의 이름이 동일하면 생략 가능
+    @Id // 식별자
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // 전략 옵션
     private Long id;
     private String account;
     private String password;
-    private String role;
-    private LocalDateTime lastLoginAt;
-    private LocalDateTime passwordUpdateAt;
-    private Integer loginFailCount;
+    private String status;
+    private String email;
+    private String phoneNumber;
     private LocalDateTime registeredAt;
     private LocalDateTime unregisteredAt;
     private LocalDateTime createdAt;

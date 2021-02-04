@@ -1,4 +1,4 @@
-package com.example.springstudy.model.Entity;
+package com.example.springstudy.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,23 +8,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity // == table
-// @Table(name="user") 테이블의 이름이 동일하면 생략 가능
-public class User {
-    // @Column(name="id") 컬럼의 이름이 동일하면 생략 가능
-    @Id // 식별자
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // 전략 옵션
+@Entity
+public class OrderDetail {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String account;
-    private String password;
+
+    private LocalDateTime orderAt;
+
     private String status;
-    private String email;
-    private String phoneNumber;
+    private LocalDateTime arrivalDate;
+    private Integer quantity;
+    private BigDecimal totalPrice;
     private LocalDateTime registeredAt;
     private LocalDateTime unregisteredAt;
     private LocalDateTime createdAt;

@@ -1,4 +1,4 @@
-package com.example.springstudy.model.Entity;
+package com.example.springstudy.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,25 +8,24 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class OrderDetail {
+public class Item {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // mysql
     private Long id;
 
-    private LocalDateTime orderAt;
-
     private String status;
-    private LocalDateTime arrivalDate;
-    private Integer quantity;
-    private BigDecimal totalPrice;
+    private String name;
+    private String title;
+    private String content;
+    private Integer price;
+    private String brandName;
     private LocalDateTime registeredAt;
     private LocalDateTime unregisteredAt;
     private LocalDateTime createdAt;
