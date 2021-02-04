@@ -22,16 +22,30 @@ public class OrderGroup {
     private Long id;
 
     private String status;
+
     private String orderType; // 주문의 형태 - 일괄 / 개별
+
     private String revAddress;
+
     private String revName;
+
     private String paymentType; // 결제수단 - 카드 / 현금
+
     private BigDecimal totalPrice;
+
     private Integer totalQuantity;
+
     private LocalDateTime orderAt;
+
     private LocalDateTime arrivalDate;
+
     private LocalDateTime createdAt;
+
     private String createdBy;
+
     private LocalDateTime updatedAt;
+
     private String updatedBy;
+
+    private Long userId; // 외래키
 }

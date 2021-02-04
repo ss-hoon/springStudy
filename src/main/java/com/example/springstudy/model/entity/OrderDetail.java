@@ -21,16 +21,23 @@ public class OrderDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDateTime orderAt;
-
     private String status;
+
     private LocalDateTime arrivalDate;
+
     private Integer quantity;
+
     private BigDecimal totalPrice;
-    private LocalDateTime registeredAt;
-    private LocalDateTime unregisteredAt;
+
     private LocalDateTime createdAt;
+
     private String createdBy;
+
     private LocalDateTime updatedAt;
+
     private String updatedBy;
+
+    private Long orderGroupId; // 외래키
+
+    private Long itemId; // 외래키
 }
