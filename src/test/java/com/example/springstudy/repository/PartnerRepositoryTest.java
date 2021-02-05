@@ -23,9 +23,9 @@ public class PartnerRepositoryTest extends SpringstudyApplicationTests {
         String businessNumber = "1234567890123";
         String ceoName = "홍길동";
         LocalDateTime registeredAt = LocalDateTime.now();
-        LocalDateTime createdAt = LocalDateTime.now();
-        String createdBy = "AdminServer";
-        Long categoryId = 1L;
+//        LocalDateTime createdAt = LocalDateTime.now();
+//        String createdBy = "AdminServer";
+//        Long categoryId = 1L;
 
         Partner partner = new Partner();
         partner.setName(name);
@@ -36,9 +36,9 @@ public class PartnerRepositoryTest extends SpringstudyApplicationTests {
         partner.setBusinessNumber(businessNumber);
         partner.setCeoName(ceoName);
         partner.setRegisteredAt(registeredAt);
-        partner.setCreatedAt(createdAt);
-        partner.setCreatedBy(createdBy);
-        partner.setCategoryId(categoryId);
+//        partner.setCreatedAt(createdAt);
+//        partner.setCreatedBy(createdBy);
+        //partner.setCategoryId(categoryId);
 
         Partner newPartner = partnerRepository.save(partner);
         Assert.assertNotNull(newPartner);

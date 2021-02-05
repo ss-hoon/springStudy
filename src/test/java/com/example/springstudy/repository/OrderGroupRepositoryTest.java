@@ -26,9 +26,9 @@ public class OrderGroupRepositoryTest extends SpringstudyApplicationTests {
         orderGroup.setTotalQuantity(1);
         orderGroup.setOrderAt(LocalDateTime.now().minusDays(2));
         orderGroup.setArrivalDate(LocalDateTime.now());
-        orderGroup.setCreatedAt(LocalDateTime.now());
-        orderGroup.setCreatedBy("AdminServer");
-        orderGroup.setUserId(1L);
+//        orderGroup.setCreatedAt(LocalDateTime.now());
+//        orderGroup.setCreatedBy("AdminServer");
+//        orderGroup.setUserId(1L);
 
         OrderGroup newOrderGroup = orderGroupRepository.save(orderGroup);
         Assert.assertNotNull(newOrderGroup);

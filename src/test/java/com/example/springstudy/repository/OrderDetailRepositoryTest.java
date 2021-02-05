@@ -26,13 +26,13 @@ public class OrderDetailRepositoryTest extends SpringstudyApplicationTests {
         orderDetail.setTotalPrice(BigDecimal.valueOf(900000));
 
         // 어떤 상품에 대한 인덱스 id
-        orderDetail.setItemId(4L);
+        //orderDetail.setItemId(4L);
 
         // 어떤 장바구니에 대한 인덱스 id
-        orderDetail.setOrderGroupId(1L);
+        //orderDetail.setOrderGroupId(1L);
 
-        orderDetail.setCreatedAt(LocalDateTime.now());
-        orderDetail.setCreatedBy("AdminServer");
+//        orderDetail.setCreatedAt(LocalDateTime.now());
+//        orderDetail.setCreatedBy("AdminServer");
 
         OrderDetail newOrderDetail = orderDetailRepository.save(orderDetail);
         Assert.assertNotNull(newOrderDetail);

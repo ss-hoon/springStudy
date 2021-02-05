@@ -26,9 +26,9 @@ public class ItemRepositoryTest extends SpringstudyApplicationTests {
         item.setPrice(900000);
         item.setBrandName("삼성");
         item.setRegisteredAt(LocalDateTime.now());
-        item.setCreatedAt(LocalDateTime.now());
-        item.setCreatedBy("Partner01");
-        item.setPartnerId(1L);
+//        item.setCreatedAt(LocalDateTime.now());
+//        item.setCreatedBy("Partner01");
+        //item.setPartnerId(1L);
 
         Item newItem = itemRepository.save(item);
         Assert.assertNotNull(newItem);

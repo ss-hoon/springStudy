@@ -19,14 +19,14 @@ public class CategoryRepositoryTest extends SpringstudyApplicationTests {
     public void create(){
         String type = "COMPUTER";
         String title = "컴퓨터";
-        LocalDateTime createdAt = LocalDateTime.now();
-        String createdBy = "AdminServer";
+//        LocalDateTime createdAt = LocalDateTime.now();
+//        String createdBy = "AdminServer";
 
         Category category = new Category();
         category.setType(type);
         category.setTitle(title);
-        category.setCreatedAt(createdAt);
-        category.setCreatedBy(createdBy);
+//        category.setCreatedAt(createdAt);
+//        category.setCreatedBy(createdBy);
 
         Category newCategory = categoryRepository.save(category);
         Assert.assertNotNull(newCategory);

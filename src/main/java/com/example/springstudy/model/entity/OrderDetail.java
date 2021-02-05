@@ -3,11 +3,14 @@ package com.example.springstudy.model.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -15,6 +18,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@ToString(exclude = {"orderGroup", "item"})
+@EntityListeners(AuditingEntityListener.class)
 public class OrderDetail {
 
     @Id
@@ -29,15 +34,25 @@ public class OrderDetail {
 
     private BigDecimal totalPrice;
 
+    @CreatedDate
     private LocalDateTime createdAt;
 
+    @CreatedBy
     private String createdBy;
 
+    @LastModifiedDate
     private LocalDateTime updatedAt;
 
+    @LastModifiedBy
     private String updatedBy;
 
-    private Long orderGroupId; // 외래키
+    // ========== 연관 관계 ==========
 
-    private Long itemId; // 외래키
+    // OrderDetail의 입장에서는 Item과 N : 1 관계
+    @ManyToOne
+    private Item item; // 외래키
+
+    // OrderDetail의 입장에서는 OrderGroup과 N : 1 관계
+    @ManyToOne
+    private OrderGroup orderGroup;
 }
