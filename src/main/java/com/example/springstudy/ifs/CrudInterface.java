@@ -2,9 +2,9 @@ package com.example.springstudy.ifs;
 
 import com.example.springstudy.model.network.Header;
 
-public interface CrudInterface {
-    Header create();
-    Header read(Long id);
-    Header update();
-    Header delete(Long id);
+public interface CrudInterface<Req, Res> {
+    Header<Res> create(Header<Req> request);
+    Header<Res> read(Long id);
+    Header<Res> update(Header<Req> request);
+    Header<Res> delete(Long id);
 }
