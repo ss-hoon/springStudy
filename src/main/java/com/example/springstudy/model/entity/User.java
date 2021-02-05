@@ -1,9 +1,7 @@
 package com.example.springstudy.model.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
+import lombok.experimental.Accessors;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -20,6 +18,8 @@ import java.util.List;
 @Entity // == table
 @ToString(exclude = {"orderGroupList"}) // 연관관계를 설정하면 Lombok을 통해 오버라이딩된 toString 메소드가 중복되므로 exclude 해줘야함
 @EntityListeners(AuditingEntityListener.class)
+@Builder // Builder 패턴 사용
+@Accessors(chain = true)
 // @Table(name="user") 테이블의 이름이 동일하면 생략 가능
 public class User {
     // @Column(name="id") 컬럼의 이름이 동일하면 생략 가능
