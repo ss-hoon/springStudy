@@ -38,8 +38,6 @@ public class OrderDetailApiLogicService implements CrudInterface<OrderDetailApiR
                 .totalPrice(body.getTotalPrice())
                 .orderGroup(orderGroupRepository.getOne(body.getOrderGroupId()))
                 .item(itemRepository.getOne(body.getItemId()))
-                .createdAt(LocalDateTime.now())
-                .createdBy("AdminServer")
                 .build();
 
         OrderDetail newOrderDetail = orderDetailRepository.save(orderDetail);

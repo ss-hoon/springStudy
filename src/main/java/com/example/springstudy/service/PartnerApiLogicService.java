@@ -35,8 +35,6 @@ public class PartnerApiLogicService implements CrudInterface<PartnerApiRequest, 
                 .businessNumber(body.getBusinessNumber())
                 .ceoName(body.getCeoName())
                 .registeredAt(LocalDateTime.now())
-                .createdAt(LocalDateTime.now())
-                .createdBy("AdminServer")
                 .category(categoryRepository.getOne(body.getCategoryId()))
                 .build();
 
