@@ -12,6 +12,8 @@ import com.example.springstudy.repository.OrderGroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 public class OrderDetailApiLogicService implements CrudInterface<OrderDetailApiRequest, OrderDetailApiResponse> {
 
@@ -36,6 +38,8 @@ public class OrderDetailApiLogicService implements CrudInterface<OrderDetailApiR
                 .totalPrice(body.getTotalPrice())
                 .orderGroup(orderGroupRepository.getOne(body.getOrderGroupId()))
                 .item(itemRepository.getOne(body.getItemId()))
+                .createdAt(LocalDateTime.now())
+                .createdBy("AdminServer")
                 .build();
 
         OrderDetail newOrderDetail = orderDetailRepository.save(orderDetail);
@@ -62,6 +66,8 @@ public class OrderDetailApiLogicService implements CrudInterface<OrderDetailApiR
                             .setQuantity(body.getQuantity())
                             .setTotalPrice(body.getTotalPrice())
                             .setOrderGroup(orderGroupRepository.getOne(body.getOrderGroupId()))
+                            .setUpdatedAt(LocalDateTime.now())
+                            .setUpdatedBy("AdminServer")
                             .setItem(itemRepository.getOne(body.getItemId()));
 
                     return orderDetail;
