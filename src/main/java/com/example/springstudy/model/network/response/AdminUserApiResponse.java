@@ -1,5 +1,6 @@
 package com.example.springstudy.model.network.response;
 
+import com.example.springstudy.model.enumClass.AdminUserStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,7 +20,7 @@ public class AdminUserApiResponse {
 
     private String password;
 
-    private String status;
+    private AdminUserStatus status;
 
     private String role;
 

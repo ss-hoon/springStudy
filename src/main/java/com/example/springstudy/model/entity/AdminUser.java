@@ -1,5 +1,6 @@
 package com.example.springstudy.model.entity;
 
+import com.example.springstudy.model.enumClass.AdminUserStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,7 +32,8 @@ public class AdminUser {
 
     private String password;
 
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private AdminUserStatus status;
 
     private String role;
 
