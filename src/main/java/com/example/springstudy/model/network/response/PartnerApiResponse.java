@@ -1,5 +1,6 @@
 package com.example.springstudy.model.network.response;
 
+import com.example.springstudy.model.enumClass.PartnerStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +17,7 @@ public class PartnerApiResponse {
 
     private String name;
 
-    private String status;
+    private PartnerStatus status;
 
     private String address;
 
