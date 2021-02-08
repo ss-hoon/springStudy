@@ -1,5 +1,8 @@
 package com.example.springstudy.model.network.request;
 
+import com.example.springstudy.model.enumClass.OrderGroupStatus;
+import com.example.springstudy.model.enumClass.OrderType;
+import com.example.springstudy.model.enumClass.PaymentType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,15 +18,15 @@ import java.time.LocalDateTime;
 public class OrderGroupApiRequest {
     private Long id;
 
-    private String status;
+    private OrderGroupStatus status;
 
-    private String orderType;
+    private OrderType orderType;
 
     private String revAddress;
 
     private String revName;
 
-    private String paymentType;
+    private PaymentType paymentType;
 
     private BigDecimal totalPrice;
 
