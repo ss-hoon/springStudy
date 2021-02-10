@@ -1,13 +1,10 @@
 package com.example.springstudy.service;
 
-import com.example.springstudy.ifs.CrudInterface;
 import com.example.springstudy.model.entity.User;
 import com.example.springstudy.model.enumClass.UserStatus;
 import com.example.springstudy.model.network.Header;
 import com.example.springstudy.model.network.request.UserApiRequest;
 import com.example.springstudy.model.network.response.UserApiResponse;
-import com.example.springstudy.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -15,10 +12,7 @@ import java.util.Optional;
 
 
 @Service
-public class UserApiLogicService implements CrudInterface<UserApiRequest, UserApiResponse> {
-
-    @Autowired
-    private UserRepository userRepository;
+public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResponse, User> {
 
     @Override
     public Header<UserApiResponse> create(Header<UserApiRequest> request) {
@@ -36,7 +30,7 @@ public class UserApiLogicService implements CrudInterface<UserApiRequest, UserAp
                 .registeredAt(LocalDateTime.now())
                 .build();
 
-        User newUser = userRepository.save(user);
+        User newUser = this.baseRepository.save(user);
 
         // 3. 생성된 데이터 -> userApiResponse return
         return response(newUser);
@@ -46,7 +40,7 @@ public class UserApiLogicService implements CrudInterface<UserApiRequest, UserAp
     public Header<UserApiResponse> read(Long id) {
 
         // id -> repository getOne, getById를 통해 데이터를 가져옴
-        Optional<User> optional = userRepository.findById(id);
+        Optional<User> optional = this.baseRepository.findById(id);
 
         // user -> userApiResponse return
         return optional
@@ -61,7 +55,7 @@ public class UserApiLogicService implements CrudInterface<UserApiRequest, UserAp
         UserApiRequest userApiRequest = request.getData();
 
         // 2. id -> user 데이터를 찾은 후
-        Optional<User> optional = userRepository.findById(userApiRequest.getId());
+        Optional<User> optional = this.baseRepository.findById(userApiRequest.getId());
 
         return optional.map(user-> {
             // 3. update
@@ -75,7 +69,7 @@ public class UserApiLogicService implements CrudInterface<UserApiRequest, UserAp
                     .setUnregisteredAt(userApiRequest.getUnregisteredAt());
             return user;
         })
-                .map(user -> userRepository.save(user)) // update
+                .map(user -> this.baseRepository.save(user)) // update
                 .map(updateUser -> response(updateUser)) // userApiResponse
                 .orElseGet(()->Header.ERROR("데이터 없음"));
     }
@@ -84,11 +78,11 @@ public class UserApiLogicService implements CrudInterface<UserApiRequest, UserAp
     public Header delete(Long id) {
 
         // 1. id -> repository -> user
-        Optional<User> optional = userRepository.findById(id);
+        Optional<User> optional = this.baseRepository.findById(id);
 
         // 2. repository -> delete
         return optional.map(user -> {
-            userRepository.delete(user);
+            this.baseRepository.delete(user);
             return Header.OK();
         })
                 .orElseGet(()->Header.ERROR("데이터 없음"));
