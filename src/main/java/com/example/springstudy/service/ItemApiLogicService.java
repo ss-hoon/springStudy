@@ -102,7 +102,7 @@ public class ItemApiLogicService extends BaseService<ItemApiRequest, ItemApiResp
         return Header.OK(itemApiResponseList, pagination);
     }
 
-    private ItemApiResponse response(Item item){
+    public ItemApiResponse response(Item item){
         ItemApiResponse body = ItemApiResponse.builder()
                 .id(item.getId())
                 .status(item.getStatus())
