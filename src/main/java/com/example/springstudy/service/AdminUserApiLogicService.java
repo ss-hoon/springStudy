@@ -2,9 +2,15 @@ package com.example.springstudy.service;
 
 import com.example.springstudy.model.entity.AdminUser;
 import com.example.springstudy.model.network.Header;
+import com.example.springstudy.model.network.Pagination;
 import com.example.springstudy.model.network.request.AdminUserApiRequest;
 import com.example.springstudy.model.network.response.AdminUserApiResponse;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AdminUserApiLogicService extends BaseService<AdminUserApiRequest, AdminUserApiResponse, AdminUser> {
@@ -26,13 +32,14 @@ public class AdminUserApiLogicService extends BaseService<AdminUserApiRequest, A
 
         AdminUser newAdminUser = this.baseRepository.save(adminUser);
 
-        return response(newAdminUser);
+        return Header.OK(response(newAdminUser));
     }
 
     @Override
     public Header<AdminUserApiResponse> read(Long id) {
         return this.baseRepository.findById(id)
                 .map(this::response)
+                .map(Header::OK)
                 .orElseGet(() -> Header.ERROR("데이터 없음"));
     }
 
@@ -57,6 +64,7 @@ public class AdminUserApiLogicService extends BaseService<AdminUserApiRequest, A
                 })
                 .map(newAdminUser -> this.baseRepository.save(newAdminUser))
                 .map(this::response)
+                .map(Header::OK)
                 .orElseGet(() -> Header.ERROR("데이터 없음"));
     }
 
@@ -70,7 +78,25 @@ public class AdminUserApiLogicService extends BaseService<AdminUserApiRequest, A
                 .orElseGet(() -> Header.ERROR("데이터 없음"));
     }
 
-    private Header<AdminUserApiResponse> response(AdminUser adminUser){
+    @Override
+    public Header<List<AdminUserApiResponse>> search(Pageable pageable) {
+        Page<AdminUser> adminUsers = this.baseRepository.findAll(pageable);
+
+        List<AdminUserApiResponse> adminUserApiResponseList = adminUsers.stream()
+                .map(this::response)
+                .collect(Collectors.toList());
+
+        Pagination pagination = Pagination.builder()
+                .totalPages(adminUsers.getTotalPages())
+                .totalElements(adminUsers.getTotalElements())
+                .currentPage(adminUsers.getNumber())
+                .currentElements(adminUsers.getNumberOfElements())
+                .build();
+
+        return Header.OK(adminUserApiResponseList, pagination);
+    }
+
+    private AdminUserApiResponse response(AdminUser adminUser){
         AdminUserApiResponse body = AdminUserApiResponse.builder()
                 .id(adminUser.getId())
                 .account(adminUser.getAccount())
@@ -84,6 +110,6 @@ public class AdminUserApiLogicService extends BaseService<AdminUserApiRequest, A
                 .unregisteredAt(adminUser.getUnregisteredAt())
                 .build();
 
-        return Header.OK(body);
+        return body;
     }
 }
