@@ -26,10 +26,10 @@ Spring Boot 첫 프로젝트로 Admin 페이지를 구현했습니다. <br>
 
 <br>
 
-## 화면 구성도
+## 화면 구성
 - Admin 페이지
 <p align = "center">
-    <img src = "/images/admin.JPG" width = "800" height = "800"></img>
+    <img src = "/images/admin.JPG" width = "800" height = "500"></img>
 </p>
 
 <br>
